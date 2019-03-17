@@ -1,0 +1,153 @@
+<!--pages/mine/mine.wxml-->
+<view>
+
+  <view class='container' style="background:url({{bgImg}}) no-repeat center;" catchtap='changeBgImg'>
+
+    <block wx:if="{{isMe}}">
+      <image src="{{faceUrl}}" class="face" bindtap='changeFace'></image>
+    </block>
+    <block wx:if="{{!isMe}}">
+      <image src="{{faceUrl}}" class="face"></image>
+    </block>
+    <label class='nickname'>{{nickname}}</label>
+    <label class='email'>email: {{email}}</label>
+    <block wx:if="{{isMe&&loginStatus}}">
+      <button size='mini' class='primary' bindtap='uploadBlog'>写博客</button>
+      <button size='mini' type='' class='login_out' bindtap='logout'>注销</button>
+    </block>
+    <block wx:if="{{isMe&&!loginStatus}}">
+      <button size='mini' class='login_out' bindtap='toLogin'>登录</button>
+    </block>
+    <block wx:if="{{!isMe}}">
+      <block wx:if="{{isFollow}}">
+        <button size='mini' type='' class='follow' data-followType='0' bindtap='followMe'>已关注</button>
+      </block>
+      <block wx:if="{{!isFollow}}">
+        <button size='mini' type='primary' class='follow' data-followType='1' bindtap='followMe'> + 关注</button>
+      </block>
+
+    </block>
+
+    <view class='container-row'>
+      <label class='info-items'>{{fansCounts==null?0:fansCounts}} 粉丝</label>
+      <label class='info-items'>{{followCounts==null?0:followCounts}} 关注</label>
+      <label class='info-items'>{{voteCounts}} 获赞</label>
+    </view>
+  </view>
+
+</view>
+
+<view class="line"></view>
+
+<view class='container-blog'>
+  <!-- 发布过的作品 -->
+  <view class='{{blogSelClass}} {{isSelectedWork}}' bindtap='doSelectWork'>作品</view>
+  <!-- 收藏的博客 -->
+  <view class='{{blogSelClass}} {{isSelectedLike}}' bindtap='doSelectLike'>收藏</view>
+  <!-- 我的关注 -->
+  <view class='{{blogSelClass}} {{isSelectedFollow}}' bindtap='doSelectFollow'>我的关注</view>
+  <!-- 我的粉丝 -->
+  <view class='{{blogSelClass}} {{isSelectedFollower}}' bindtap='doSelectFollower'>粉丝</view>
+</view>
+
+<view class='container-blog-list'>
+
+  <view wx:if='{{!myWorkFalg && myBlogList.length==0}}' class='empty-msg'>
+    <text>空空如也~</text>
+  </view>
+  <view hidden='{{myWorkFalg}}'>
+    <!-- 一条博客 -->
+    <view wx:for="{{myBlogList}}" class="card mb-4">
+      <view class="card-block" data-index='{{index}}' bindtap='toBlogDetail'>
+
+        <!-- title -->
+        <view class="card-title">
+          <text bindtap=''>{{item.title}}</text>
+        </view>
+        <!-- summary -->
+        <view>
+          <text class="card-text">{{item.summary}}</text>
+        </view>
+        <!-- 底部显示:发表时间、点击量、点赞量、评论数 -->
+        <view class="card-text">
+          <text>发表于 {{item.createTime}} </text>
+          <view>
+            <image src='/images/mark_small.png' class='icon'>
+            </image>
+            <text>{{item.markSize}}</text>
+            <image src='/images/like.png' class='icon'>
+            </image>
+            <text>{{item.voteSize}}</text>
+            <image src='/images/comment.png' class='icon'>
+            </image>
+            <text>{{item.commentSize}}</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+
+  <view wx:if='{{!myLikesFalg && myBlogList.length==0}}' class='empty-msg'>
+    <text>空空如也~</text>
+  </view>
+  <view hidden='{{myLikesFalg}}'>
+    <!-- 一条博客 -->
+    <view wx:for="{{myBlogList}}" class="card mb-4">
+      <view class="card-block" data-index='{{index}}' bindtap='toBlogDetail'>
+
+        <!-- title -->
+        <view class="card-title">
+          <text bindtap=''>{{item.title}}</text>
+        </view>
+        <!-- summary -->
+        <view>
+          <text class="card-text">{{item.summary}}</text>
+        </view>
+        <!-- 底部显示:发表时间、点击量、点赞量、评论数 -->
+        <view class="card-text">
+          <text>{{item.userName}} 发表于 {{item.createTime}} </text>
+          <view>
+            <image src='/images/mark_small.png' class='icon'>
+            </image>
+            <text>{{item.markSize}}</text>
+            <image src='/images/like.png' class='icon'>
+            </image>
+            <text>{{item.voteSize}}</text>
+            <image src='/images/comment.png' class='icon'>
+            </image>
+            <text>{{item.commentSize}}</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <view wx:if='{{!myFollowFalg && followList.length==0}}' class='empty-msg'>
+    <text>空空如也~</text>
+  </view>
+  <view hidden='{{myFollowFalg}}' class='container-blog-list'>
+    <block wx:for="{{followList}}">
+      <view class='follow-list-item' bindtap='toUserpage' data-username='{{item.username}}'>
+        <image src="{{item.avatar==null?'../../images/avatar-defualt.png':item.avatar}}" class="face" data-arrindex='{{index}}'></image>
+        <label class='nickname'>{{item.username}}</label>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if='{{!myFollowerFalg && followList.length==0}}' class='empty-msg'>
+    <text>空空如也~</text>
+  </view>
+  <view hidden='{{myFollowerFalg}}' class='container-blog-list'>
+    <block wx:for="{{followList}}">
+      <view class='follow-list-item' bindtap='toUserpage' data-username='{{item.follower}}'>
+        <image src="{{item.avatar==null?'../../images/avatar-defualt.png':item.avatar}}" class="face" data-arrindex='{{index}}'></image>
+        <label class='nickname'>{{item.follower}}</label>
+      </view>
+    </block>
+  </view>
+
+
+</view>

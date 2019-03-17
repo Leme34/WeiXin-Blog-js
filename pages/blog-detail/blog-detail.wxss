@@ -1,0 +1,271 @@
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.card-block {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+
+.card-text {
+  position: relative;
+  margin-top: 0.75rem;
+}
+
+.card-title {
+  font-size: 50rpx;
+  margin-bottom: 0.75rem;
+}
+
+.blog-avatar-50 {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.blog-avatar-40 {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.blog-avatar-30 {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
+/* 引用阿里iconfont */
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.blog-content {
+  margin-top: 80rpx;
+}
+
+.blog-textField {
+  margin-top: 40rpx;
+}
+
+.blog-lable {
+  margin-top: 80rpx;
+}
+
+.blog-comment {
+  border: solid #999;
+  margin-top: 80rpx;
+}
+
+.blog-vote {
+  margin-top: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.comment-item {
+  margin-top: 40rpx;
+}
+
+.comment-item-content {
+  margin-top: 20rpx;
+  margin-left: 30rpx;
+  position: relative;
+}
+
+.comment-item-contenticon {
+  float: right;
+  margin-right: 40rpx;
+  width: 40rpx;
+  height: 40rpx;
+  /* z-index: 1; */
+}
+
+/* .comment-item-contenttext{
+  position: absolute;
+  height: 40rpx;
+  right: 100rpx;
+  bottom: 15rpx;
+} */
+
+.comment-item-s-good {
+  /* width: 160rpx;
+  height: 40rpx; */
+  margin-right: 20rpx;
+  float: right;
+  position: absolute;
+  right: 28rpx;
+  bottom: 10rpx;
+}
+
+.comment-item-s-good-icon {
+  position: absolute;
+  right: 160rpx;
+  bottom: 5rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.comment-item-s-good-text {
+  position: absolute;
+  height: 40rpx;
+  /* float: right; */
+  right: 140rpx;
+  bottom: 10rpx;
+}
+
+.sub-comment-item {
+  background: whitesmoke;
+  margin-top: 20rpx;
+  margin-left: 100rpx;
+}
+
+.comment-item-reply {
+  border: solid whitesmoke;
+}
+
+/*       自定义实现回复弹窗CSS       */
+
+.toast-box {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+}
+
+.toastbg {
+  opacity: 0.2;
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.showToast {
+  position: absolute;
+  opacity: 1;
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 40%;
+}
+
+.toast-title {
+  padding-left: 5%;
+  background-color: #2196f3;
+  color: white;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  border-top-right-radius: 16rpx;
+  border-top-left-radius: 16rpx;
+}
+
+.toast-main {
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  background-color: white;
+  text-align: center;
+}
+
+.toast-input {
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 1px solid #ddd;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+.toast-button {
+  display: flex;
+}
+
+.button1 {
+  width: 50%;
+}
+
+.button2 {
+  width: 50%;
+}
+
+.button1 button {
+  width: 100%;
+  background-color: white;
+  color: red;
+  border-radius: 0px;
+  border-bottom-left-radius: 16rpx;
+}
+
+.button2 button {
+  width: 100%;
+  background-color: white;
+  color: black;
+  border-radius: 0px;
+  border-bottom-right-radius: 16rpx;
+}
+
+.picker {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+.showTab {
+  margin-top: 20rpx;
+  position: relative;
+}
+
+.blog-edit-btn {
+  position: absolute;
+  float: right;
+  /* top: 250rpx; */
+  right: 210rpx;
+  width: 150rpx;
+  height: 64rpx;
+  text-align: center;
+  line-height: 64rpx;
+  margin-bottom: 20rpx;
+}
+
+.blog-del-btn {
+  position: absolute;
+  float: right;
+  /* top: 250rpx; */
+  right: 50rpx;
+  width: 150rpx;
+  height: 64rpx;
+  text-align: center;
+  line-height: 64rpx;
+  margin-bottom: 20rpx;
+}
+
+.blog-image{
+  width: 278px;
+  height: 180px;
+}

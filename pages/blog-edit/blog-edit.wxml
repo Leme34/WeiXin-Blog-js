@@ -1,0 +1,50 @@
+<view class="container">
+  <!-- 图片列表 -->
+  <view class='image-list'>
+    <block wx:for='{{images}}'>
+      <view class='image-item'>
+        <image mode='aspectFill' src='{{item.url}}' class='image-item-img'></image>
+        <!-- 删除图片悬浮按钮 -->
+        <!-- 踩坑！微信的icon有空白位置导致父view被挤大 -->
+        <!-- <icon type='cancel' class='del_icon' bindtap='del_img' data-index='{{index}}'></icon> -->
+        <image class='del_icon' src='../../images/del_btn.png' data-index='{{index}}' bindtap='del_img'></image>
+      </view>
+    </block>
+    <block>
+      <view>
+        <button bindtap='uploadImage' class='add-btn'>添加图片</button>
+      </view>
+    </block>
+  </view>
+
+  <!-- 文本输入框内容 -->
+  <view class="text-area">
+    <form bindsubmit="bindFormSubmit">
+      <input name='blogTitle' class='text-content' placeholder='博客标题...' value='{{blogTitle}}'></input>
+      <textarea placeholder="博客概括..." class='text-content' name="blogSummary" value='{{blogSummary}}'/>
+      <textarea class='text-content' maxlength='-1' placeholder="博客内容..." name="blogContent" value='{{blogContent}}'/>
+
+      <!-- 下拉框  -->
+      <view class='list-msg2' bindtap='bindShowMsg'>
+        <text>{{index==-1?'默认分类':categoryList[index].name}}</text>
+        <image style='height:20rpx;width:20rpx;' src='/images/down.png' ></image>
+      </view>
+      <button class='add-category-btn' bindtap='showModal'>+</button>
+
+      <!-- 点击下拉框需要显示的下拉列表 -->
+      <view class='select_box' wx:if='{{select}}'>
+        <block wx:for="{{categoryList}}">
+          <!-- <view class='select_one' bindtap='mySelect' data-categoryid='{{categoryList[index].id}}'>{{categoryList[index].name}}</view> -->
+          <view class='select_one' bindtap='mySelect' data-index='{{index}}'>{{item.name}}</view>
+        </block>
+      </view>
+
+      <button class='btn-submit' form-type="submit"> 提交 </button>
+    </form>
+  </view>
+
+</view>
+
+<modal hidden="{{hiddenmodal}}" title="添加分类" confirm-text="保存" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+    <input value='{{inputData}}' bindinput='getInputData' type='text'placeholder="请输入分类名称..." auto-focus/>
+</modal>

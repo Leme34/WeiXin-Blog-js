@@ -1,0 +1,141 @@
+<view class='card mb-4'>
+
+  <!-- 一条博文 -->
+  <view class='card-block'>
+    <!-- 头像图片和博文标题 -->
+    <view class='card-title'>
+      <image src="{{blog.avatar==null?'../../images/avatar-defualt.png':blog.avatar}}" bindtap='toUserPage' class='blog-avatar-50' data-username='{{blog.userName}}'></image>
+      <text bindtap='toBlogDetail' data-blogid='{{blog.id}}' style='margin-left: 50rpx;'>{{blog.title}}</text>
+    </view>
+
+    <!-- 底部显示博主username、发表时间、点击量、点赞量、评论数 -->
+    <view class='card-text'>
+      <text bindtap=''>{{blog.userName}}</text>
+      <text>发表于 {{blog.createTime}} </text>
+      <view class='showTab'>
+        <image src='/images/look.png' class='icon'>
+        </image>
+        <text>{{blog.markSize}}</text>
+        <image src='/images/like.png' class='icon'>
+        </image>
+        <text>{{blog.voteSize}}</text>
+        <image src='/images/comment.png' class='icon'>
+        </image>
+        <text>{{blog.commentSize}}</text>
+        <button type='warn' wx:if='{{isMe}}' class='blog-del-btn' bindtap='delBlog'>删除</button>
+      <button type='primary' wx:if='{{isMe}}' class='blog-edit-btn' bindtap='toBlogEdit'>编辑</button>
+      </view>
+    </view>
+
+    <!-- 博客图片 -->
+    <view class='blog-content'>
+
+        <block wx:for='{{imageList}}'>
+          <image mode='aspectFit' src='{{item.url}}' class='blog-image'></image>
+        </block>
+
+
+      <!-- 博客正文 -->
+      <view class='blog-textField'>
+        <text>{{blog.content}}</text>
+      </view>
+    </view>
+
+    <!-- 显示分类 -->
+    <view class='blog-lable'>
+      分类：{{blog.category}}
+    </view>
+
+    <!-- 点赞和收藏按钮 -->
+    <view>
+      <image bindtap='voteBlog' class='blog-vote' src="{{isVote?'../../images/good_fill.png':'../../images/good.png'}}"></image>
+      <text bindtap='voteBlog'> {{voteText}}</text>
+      <image bindtap='markBlog' class='blog-vote' src="{{isMark?'../../images/mark_fill.png':'../../images/mark.png'}}" style='margin-left: 100rpx;'></image>
+      <text bindtap='markBlog'> {{markText}}</text>
+    </view>
+
+
+    <!-- 评论框 -->
+    <view>
+      <input class='blog-comment' bindconfirm="saveComment" placeholder='请留言~' value='{{contentValue}}'></input>
+    </view>
+
+
+
+    <!--             评论列表              -->
+
+    <view wx:for='{{commentList}}' wx:for-item='item'>
+      <!--           一条父评论,pid=null               -->
+      <view class='comment-item' wx:if='{{!item.pid}}'>
+        <!-- 头像 -->
+        <image class="card-title blog-avatar-40" src='{{item.userAvatar}}' bindtap='toUserPage' data-username='{{item.userName}}'></image>
+        <!-- 楼层+时间 -->
+        <text class='card-text'>{{item.userName}}  {{index+1}}楼 {{item.createTime}}</text>
+
+        <!-- 评论内容 -->
+        <view class='comment-item-content'>
+          <text>{{item.content}}</text>
+          <image class='comment-item-contenticon' src='../../images/delete.png' bindtap='del_comment' data-id='{{item.id}}' wx:if='{{item.userName==userName}}'></image>
+          <image class='comment-item-contenticon' src='../../images/reply.png' bindtap='showReplyInput' data-replycommentid='{{item.id}}' data-replyusername='{{item.userName}}'></image>
+          <view class='comment-item-s-good'>
+            <text class='comment-item-s-good-text'>{{item.voteNum==null?'':item.voteNum}}</text>
+            <image class='comment-item-s-good-icon' src="{{item.voted?'../../images/heart_fill.png':'../../images/heart.png'}}" bindtap='vote_comment' data-id='{{item.id}}' data-isvoted='{{item.voted}}'></image>
+          </view>
+        </view>
+      </view>
+
+
+      <!--           子评论               -->
+      <view wx:for='{{item.commentList}}' wx:for-item='s_item'>
+        <!--           一条子评论               -->
+        <view class='sub-comment-item' wx:if='{{s_item.pid==item.id}}'>
+          <!-- 头像 -->
+          <image class="card-title blog-avatar-30" src='{{s_item.userAvatar}}' bindtap='toUserPage' data-username='{{s_item.userName}}'></image>
+          <!-- 楼层+回复者+时间(需要转换) -->
+          <text class='card-text'>{{s_item.userName}}  回复  {{s_item.replyUserName==null?'':s_item.replyUserName}} {{s_item.createTime}}</text>
+
+          <!-- 评论内容 -->
+          <view class='comment-item-content'>
+            <text>{{s_item.content}}</text>
+            <image class='comment-item-contenticon' src='../../images/delete.png' bindtap='del_comment' data-id='{{s_item.id}}' wx:if='{{s_item.userName==userName}}'></image>
+            <image class='comment-item-contenticon' src='../../images/reply.png' bindtap='showReplyInput' data-replycommentid='{{item.id}}' data-replyusername='{{s_item.userName}}' data-replyuserid='{{s_item.userId}}'></image>
+            <view class='comment-item-s-good'>
+              <text class='comment-item-s-good-text'>{{s_item.voteNum==null?'':s_item.voteNum}}</text>
+              <image class='comment-item-s-good-icon' src="{{s_item.voted?'../../images/heart_fill.png ':'../../images/heart.png'}}" bindtap='vote_comment' data-id='{{s_item.id}}' data-isvoted='{{s_item.voted}}'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+
+
+  </view>
+
+
+
+</view>
+
+<!-- 自定义实现回复弹窗 -->
+<view class='toast-box' hidden='{{!isShow}}'>
+  <view class='toastbg'></view>
+  <view class='showToast'>
+    <view class='toast-title'>
+      <text>回复评论</text>
+    </view>
+    <view class='toast-main'>
+      <view class='toast-input'>
+        <input placeholder='@{{replyUserName}}:' bindinput='setValue' value='{{replyContent}}'></input>
+      </view>
+    </view>
+    <view class='toast-button'>
+      <view class='button1'>
+        <button catchtap='cancel'>取消</button>
+      </view>
+      <view class='button2'>
+        <button catchtap='confirm'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>

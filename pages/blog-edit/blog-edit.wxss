@@ -1,0 +1,118 @@
+.container {
+  margin-top: -200rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.image-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.image-item {
+  display: flex;
+  flex-direction: row;
+  width: 250rpx;
+  height: 360rpx;
+  position: relative;
+}
+
+.image-item-img {
+  width: 250rpx;
+  height: 360rpx;
+}
+
+.del_icon {
+  position: absolute;
+  top: 0;
+  right: 0rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.add-btn {
+  width: 235rpx;
+  height: 360rpx;
+  text-align: center;
+  line-height: 360rpx;
+}
+
+.text-area {
+  width: 100%;
+}
+
+.text-content {
+  width: 600rpx;
+  margin-top: 50rpx;
+  margin-left: 75rpx;
+  border: 2rpx solid #999;
+  border-radius: 10rpx;
+}
+
+.btn-submit {
+  background: skyblue;
+  margin-top: 20rpx;
+  margin-left: 170rpx;
+  width: 400rpx;
+  height: 80rpx;
+}
+
+/*      自定义实现下拉框      */
+
+.list-msg1 {
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-msg2 {
+  margin-top: 40rpx;
+  margin-left: 80px;
+  width: 100px;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 0 10rpx;
+}
+
+@keyframes myfirst {
+  from {
+    height: 0rpx;
+  }
+
+  to {
+    height: 210rpx;
+  }
+}
+
+.select_box {
+  margin-left: 80px;
+  background-color: #eee;
+  padding: 0 10rpx;
+  width: 100px;
+  top: 130rpx;
+  z-index: 1;
+  overflow: hidden;
+  animation: myfirst 0.5s;
+}
+
+.select_one {
+  height: 60rpx;
+  line-height: 60rpx;
+  border-bottom: 1px solid #ccc;
+}
+
+.add-category-btn{
+  width: 100rpx;
+  height: 64rpx;
+  float: right;
+  line-height: 64rpx;
+  text-align: center;
+  bottom: 65rpx;
+  right: 208rpx;
+}

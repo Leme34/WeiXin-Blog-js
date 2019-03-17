@@ -1,0 +1,57 @@
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.card-block {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+
+.card-text {
+  margin-top: 0.75rem;
+}
+
+.card-title {
+  font-size: 50rpx;
+  margin-bottom: 0.75rem;
+}
+
+.blog-avatar-50 {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+/* 引用阿里iconfont */
+.icon {
+   width: 1em; height: 1em;
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
+}
+
+.msg{
+  height: 640rpx;
+  width: 100%;
+  line-height: 640rpx;
+  text-align: center;
+}
