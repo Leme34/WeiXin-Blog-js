@@ -31,7 +31,7 @@
     <view class='blog-content'>
 
         <block wx:for='{{imageList}}'>
-          <image mode='aspectFit' src='{{item.url}}' class='blog-image'></image>
+          <image mode='aspectFill' src='{{item.url}}' class='blog-image' catchtap='showImage' data-imgurl='{{item.url}}'></image>
         </block>
 
 

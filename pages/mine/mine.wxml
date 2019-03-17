@@ -1,7 +1,7 @@
 <!--pages/mine/mine.wxml-->
 <view>
 
-  <view class='container' style="background:url({{bgImg}}) no-repeat center;" catchtap='changeBgImg'>
+  <view class='container' style="background:url({{bgImg}}) no-repeat center;background-size:contain;" catchtap='changeBgImg'>
 
     <block wx:if="{{isMe}}">
       <image src="{{faceUrl}}" class="face" bindtap='changeFace'></image>

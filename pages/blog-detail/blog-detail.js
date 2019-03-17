@@ -43,7 +43,6 @@ Page({
       imageList: JSON.parse(blog.imageList),
       isMe: isMe
     })
-
   },
 
   /**
@@ -566,5 +565,12 @@ Page({
       })
     }
   },
+
+  //预览图片
+  showImage(e) {
+    wx.previewImage({
+      urls: [e.currentTarget.dataset.imgurl]
+    })
+  }
 
 })

@@ -266,6 +266,6 @@
 }
 
 .blog-image{
-  width: 278px;
-  height: 180px;
+  width: 320px;
+  height: 260px;
 }
