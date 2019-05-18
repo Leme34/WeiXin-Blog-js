@@ -29,7 +29,7 @@ Page({
     console.log(params.blog);
     //若传参不为空则是编辑博客
     if (params.blog) {
-      let blog = JSON.parse(params.blog);
+      let blog = JSON.parse(decodeURIComponent(params.blog));
       console.log(blog);
 
       //标志为修改博客,并显示原博客数据

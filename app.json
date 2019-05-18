@@ -33,5 +33,6 @@
     ],
     "color": "#bfbfbf",
     "selectedColor": "#1AAD19"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

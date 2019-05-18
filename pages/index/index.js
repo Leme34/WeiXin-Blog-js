@@ -85,7 +85,7 @@ Page({
     console.log(this.data.blogList[index]);
     //跳转博客详细页
     wx.navigateTo({
-      url: '../blog-detail/blog-detail?blog=' + JSON.stringify(this.data.blogList[index])
+      url: '../blog-detail/blog-detail?blog=' + encodeURIComponent(JSON.stringify(this.data.blogList[index]))
     })
   },
 

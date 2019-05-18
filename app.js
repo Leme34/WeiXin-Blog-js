@@ -15,11 +15,11 @@ App({
   // fileUploadUrl: 'http://localhost:8081/upload',
 
   // 上线配置
-  baseUrl: 'http://www.thedark.cn:8080',
+  baseUrl: 'http://111.230.68.228:8080',
   //文件服务器url
-  fileServerUrl: 'http://www.thedark.cn:8081',
+  fileServerUrl: 'http://111.230.68.228:8081',
   //上传文件接口
-  fileUploadUrl: 'http://www.thedark.cn:8081/upload',
+  fileUploadUrl: 'http://111.230.68.228:8081/upload',
 
 
   //处理服务端返回session过期或者用户被挤下线错误

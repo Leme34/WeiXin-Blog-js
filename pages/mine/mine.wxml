@@ -4,7 +4,7 @@
   <view class='container' style="background:url({{bgImg}}) no-repeat center;background-size:contain;" catchtap='changeBgImg'>
 
     <block wx:if="{{isMe}}">
-      <image src="{{faceUrl}}" class="face" bindtap='changeFace'></image>
+      <image src="{{faceUrl}}" class="face" catchtap  ='changeFace'></image>
     </block>
     <block wx:if="{{!isMe}}">
       <image src="{{faceUrl}}" class="face"></image>
@@ -12,11 +12,11 @@
     <label class='nickname'>{{nickname}}</label>
     <label class='email'>email: {{email}}</label>
     <block wx:if="{{isMe&&loginStatus}}">
-      <button size='mini' class='primary' bindtap='uploadBlog'>写博客</button>
-      <button size='mini' type='' class='login_out' bindtap='logout'>注销</button>
+      <button size='mini' class='primary' catchtap  ='uploadBlog'>写博客</button>
+      <button size='mini' type='' class='login_out' catchtap  ='logout'>注销</button>
     </block>
     <block wx:if="{{isMe&&!loginStatus}}">
-      <button size='mini' class='login_out' bindtap='toLogin'>登录</button>
+      <button size='mini' class='login_out' catchtap  ='toLogin'>登录</button>
     </block>
     <block wx:if="{{!isMe}}">
       <block wx:if="{{isFollow}}">

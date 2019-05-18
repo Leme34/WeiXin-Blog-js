@@ -30,12 +30,14 @@ Page({
    * 页面加载
    */
   onLoad: function(params) {
-    let blog = JSON.parse(params.blog);
+    console.log(params.blog);
+    let blog = JSON.parse(decodeURIComponent(params.blog));
     let userInfo = wx.getStorageSync('userInfo');
     let isMe = false;
     if (userInfo && blog.userName == userInfo.username) {
       isMe = true;
     }
+
     //取出传过来的数据，用户信息用于判断是否评论者
     this.setData({
       blog: blog,
@@ -422,7 +424,7 @@ Page({
   toBlogEdit() {
     //带着blog信息跳转编辑页
     wx.navigateTo({
-      url: '../blog-edit/blog-edit?blog=' + JSON.stringify(this.data.blog),
+      url: '../blog-edit/blog-edit?blog=' + encodeURIComponent(JSON.stringify(this.data.blog)),
     })
   },
 
